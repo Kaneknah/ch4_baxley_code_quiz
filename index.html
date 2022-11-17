@@ -1,12 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Code Quiz</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
 </head>
+
 <body>
-    <p>This is the Code Quiz</p>
+    <!-- Home and Clear Button pluss Scores (Flexbox): will remain at all times thought the game. no adjustment -->
+    <nav>
+        <div class="nav-flex-cont">
+            <div class="nav-flex-row">
+                <section class="nav-flex-col1">
+                    <button id="home-btn">Home</button>
+                </section>
+                <section class="nav-flex-col2">
+                    <button id="clear-btn">Clear</button>
+                </section>
+                <section class="nav-flex-col3">
+                    <div id="time-remain">Time Remaining:</div>
+                </section>
+                <section class="nav-flex-col4">
+                    <div id="score">Score:</div>
+                </section>
+            </div>
+        </div>
+    </nav>
+    <main class=body-flex-cont>
+        <div class=body-flex-row>
+            <div id="card" style="display: block">
+                <!-- title and propt will be hidden after rungame function -->
+                <h1 id="title">Code Quiz Challenge</h1>
+                <p id="prompt"> Answer the Following Questions in Time! Do your Best!</p>
+                <!-- question-text will be "hidden" until startquiz function -->
+                <p id="question"></p>
+                <button id="start-btn">Start Quiz</button>
+            </div>
+            <div class="question-card"></div>
+            <div id=question-group1 style="display: none">
+
+            </div>
+        </div>
+        <Section id="results-text"></Section>
+    </main>
+
+    <script src="/develop/script.js"></script>
 </body>
+
 </html>
+
+                <!-- <h1>Bla bla bla</h1>
+                                <ul>
+                                    <li>
+                                        <button class="right">Bla</button>
+                                    </li>
+                                    <li>
+                                        <button class="wrong">Bla</button>
+                                    </li>
+                                    <li>
+                                        <button class="wrong">Bla</button>
+                                    </li>
+                                    <li>
+                                        <button class="wrong">Bla</button>
+                                    </li>
+                                </ul> -->

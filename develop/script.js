@@ -5,7 +5,7 @@ let questionOption = document.getElementById("card")
 let questionMessage = document.getElementById("prompt")
 let questionChoiceEl = document.getElementById("title")
 let textPrompt = document.getElementById("prompt")
-let homeEl = documentGetElementBtID("home-btn")
+//let homeEl = documentGetElementBtID("home-btn")
 
 let highScoreEl = document.getElementById("")
 //need to add elements for
@@ -93,36 +93,35 @@ timerInterval = setInterval(function() {
 //      timer
 
 // how to connect text in JS to specific questions and rotate them though as they are clicked.
-function runQuiz() [
-  //remove card
-  .card.remove()
-  //add question-card to HTML
-    //question + options
-      //conect questions in JS to HTML (how?) 
-  // if statements for questions and answers
-    //if answered wrong
-      //remove 5 seconds
-      //display message "Wrong. Try again"
-    //if answered right
-      //move to next question
-      //display message "Great Job!"
+// function runQuiz() {
+//   .card.remove()
+//   add question-card to HTML
+//     question + options
+//       conect questions in JS to HTML (how?) 
+//   if statements for questions and answers
+//     if answered wrong
+//       remove 5 seconds
+//       display message "Wrong. Try again"
+//     if answered right
+//       move to next question
+//       display message "Great Job!"
 
-  //after final question is submited
-    //record time
-    //run submit score function
+//   after final question is submited
+//     record time
+//     run submit score function
   
-   questionOption = question[question.number];
-   questionMessage.textContent = questionOption.question
-   document.getElementById().style.display = 'block';
+//    questionOption = question[question.number];
+//    questionMessage.textContent = questionOption.question
+//    document.getElementById().style.display = 'block';
 
-   for (var i = 0; <questionOption.length; i++){
-
-
-
-   }
+//    for (var i = 0; <questionOption.length; i++){
 
 
-]
+
+//    }
+
+
+//   }
 
 // function sumbitScore
   //remove questions
@@ -138,16 +137,16 @@ function runQuiz() [
 
 //clear button
 
-//home button
-function home{
-    location.reload;
-}
+// //home button
+// function home{
+//     location.reload;
+// }
 
 // add event listeners
-startBtn.addEventListener("click", startGame);
-homeBtn.addEventListener("click", home);
-clearBtn.addEventListener("clikc", clear);
-submitBtn.addEventListener("click", submit);
+startBtn.addEventListener("click", startQuiz);
+// homeBtn.addEventListener("click", home);
+// clearBtn.addEventListener("clikc", clear);
+// submitBtn.addEventListener("click", submit);
 
 //GIVEN I am taking a code quiz
 // WHEN I click the start button

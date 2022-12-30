@@ -1,21 +1,26 @@
+// GIVEN I am taking a code quiz
+// WHEN I click the start button
+// THEN a timer starts and I am presented with a question
+// WHEN I answer a question
+// THEN I am presented with another question
+// WHEN I answer a question incorrectly
+// THEN time is subtracted from the clock
+// WHEN all questions are answered or the timer reaches 0
+// THEN the game is over
+// WHEN the game is over
+// THEN I can save my initials and score
+
 //name Variables:
-let timeEl = document.getElementById("time-remain")
+let timeRemainingEl = document.getElementById("time-remaining")
 let startBtn = document.getElementById("start-btn")
 let questionOption = document.getElementById("card")
 let questionMessage = document.getElementById("prompt")
 let questionChoiceEl = document.getElementById("title")
 let textPrompt = document.getElementById("prompt")
+let clearBtn = d
 //let homeEl = documentGetElementBtID("home-btn")
 
 let highScoreEl = document.getElementById("")
-//need to add elements for
-//time
-//butons
-//  start, back, clear, submit
-//querySecelctors
-//high schores
-//messages
-//
 
 //create the questions needed for the quiz
 var questions = [ 
@@ -88,40 +93,37 @@ timerInterval = setInterval(function() {
   runQuiz()
 
 }
-//function init
-//      time
-//      timer
 
 // how to connect text in JS to specific questions and rotate them though as they are clicked.
-// function runQuiz() {
-//   .card.remove()
-//   add question-card to HTML
-//     question + options
-//       conect questions in JS to HTML (how?) 
-//   if statements for questions and answers
-//     if answered wrong
-//       remove 5 seconds
-//       display message "Wrong. Try again"
-//     if answered right
-//       move to next question
-//       display message "Great Job!"
-
-//   after final question is submited
-//     record time
-//     run submit score function
+function runQuiz() {
   
-//    questionOption = question[question.number];
-//    questionMessage.textContent = questionOption.question
-//    document.getElementById().style.display = 'block';
+  // add question-card to HTML
+  //   question + options
+  //     conect questions in JS to HTML (how?) 
+  // if statements for questions and answers
+  //   if answered wrong
+  //     remove 5 seconds
+  //     display message "Wrong. Try again"
+  //   if answered right
+  //     move to next question
+  //     display message "Great Job!"
 
-//    for (var i = 0; <questionOption.length; i++){
+  // after final question is submited
+  //   record time
+  //   run submit score function
+  
+   questionOption = question[question.number];
+   questionMessage.textContent = questionOption.question
+   document.getElementById().style.display = 'block';
+
+  //  for (var i = 0; <questionOption.length; i++){
 
 
 
-//    }
+  //  }
 
 
-//   }
+}
 
 // function sumbitScore
   //remove questions
@@ -147,15 +149,3 @@ startBtn.addEventListener("click", startQuiz);
 // homeBtn.addEventListener("click", home);
 // clearBtn.addEventListener("clikc", clear);
 // submitBtn.addEventListener("click", submit);
-
-//GIVEN I am taking a code quiz
-// WHEN I click the start button
-// THEN a timer starts and I am presented with a question
-// WHEN I answer a question
-// THEN I am presented with another question
-// WHEN I answer a question incorrectly
-// THEN time is subtracted from the clock
-// WHEN all questions are answered or the timer reaches 0
-// THEN the game is over
-// WHEN the game is over
-// THEN I can save my initials and score

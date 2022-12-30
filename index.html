@@ -31,18 +31,19 @@
     </nav>
     <main class=body-flex-cont>
         <div class=body-flex-row>
-            <div id="card" style="display: block">
+            <div id="main-quiz-card" style="display: block">
                 <!-- title and propt will be hidden after rungame function -->
                 <h1 id="title">Code Quiz Challenge</h1>
-                <p id="prompt"> Answer the Following Questions in Time! Do your Best!</p>
+                <p id="quiz-prompt"> Answer the Following Questions in Time! Do your Best!</p>
                 <!-- question-text will be "hidden" until startquiz function -->
                 <p id="question"></p>
                 <button id="start-btn">Start Quiz</button>
             </div>
-            <div class="question-card"></div>
-            <div id=question-group1 style="display: none">
-
+            <div class="question-card">
+                <div id="question-prompt" style="display: none"></div>
+                <div class="answer-options"></div>
             </div>
+
         </div>
         <Section id="results-text"></Section>
     </main>

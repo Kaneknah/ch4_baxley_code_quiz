@@ -11,21 +11,22 @@
 // THEN I can save my initials and score
 
 //name Variables:
-let timeRemainingEl = document.getElementById("time-remaining")
-let startBtn = document.getElementById("start-btn")
-let questionOption = document.getElementById("card")
-let questionMessage = document.getElementById("prompt")
-let questionChoiceEl = document.getElementById("title")
-let textPrompt = document.getElementById("prompt")
-let clearBtn = d
-//let homeEl = documentGetElementBtID("home-btn")
-
-let highScoreEl = document.getElementById("")
+const homeBtn = $("#home-btn");
+const clearBtn = $("#clear-btn");
+let timeRemainingEl = $("#time-remaining");
+const quizPrompt = $("#quiz-prompt");
+const startBtn = $("#start-btn");
+let questionCard = (".question-card");
+let answerOptions = $(".answer-options");
+let questionPrompt = $("#question-prompt");
+let highScoreEl = ("");
+let currentQuestionInt = 0;
+let secondsLeft = 30;
 
 //create the questions needed for the quiz
 var questions = [ 
     {
-        question1: "Bla Bla Bla",
+        question: "Bla Bla Bla111",
         options: [
         "A. bla",
         "B. bla",
@@ -34,7 +35,7 @@ var questions = [
          } ,
 
       {
-        question2: "Bla Bla Bla",
+        question: "Bla Bla Bla222",
         options: [
         "A. bla",
         "B. bla",
@@ -43,7 +44,7 @@ var questions = [
          } ,
     
      {
-        question3: "Bla Bla Bla",
+        question: "Bla Bla Bla333",
         options: [
         "A. bla",
         "B. bla",
@@ -52,7 +53,7 @@ var questions = [
          } ,
     
   {
-        question4: "Bla Bla Bla",
+        question: "Bla Bla Bla444",
         options: [
         "A. bla",
         "B. bla",
@@ -61,7 +62,7 @@ var questions = [
          } ,
     
   {
-        question5: "Bla Bla Bla",
+        question: "Bla Bla Bla555",
         options: [
         "A. bla",
         "B. bla",
@@ -71,59 +72,47 @@ var questions = [
     
 ];
 
+function getNextQuestion(questionNum){
+  currentQuestionInt++
+  return (questions[questionNum]);
+}
 
-
-// Function for Starting the quiz: removes buttons and starts timmer and activates runQuiz function. 
+// Function for Starting the quiz: removes buttons and starts timer and activates runQuiz function. 
 function startQuiz(){
 
-timerInterval = setInterval(function() {
+  setInterval(function() {
     secondsLeft--;
-    timeEl.textContent = secondsLeft + "Seconds left till Game Over"
-    
+    timeRemainingEl.textContent = secondsLeft + " Seconds left till Game Over"
+    console.log("hello!@!@!");
     if(secondsLeft === 0) {
       clearInterval(timerInterval);
     
     }
 
-  }, 5000);
+  }, 1000);
 
   startBtn.remove()
-  textPrompt.remove()
-
+  quizPrompt.remove()
   runQuiz()
 
 }
 
+
+
 // how to connect text in JS to specific questions and rotate them though as they are clicked.
 function runQuiz() {
   
-  // add question-card to HTML
-  //   question + options
-  //     conect questions in JS to HTML (how?) 
-  // if statements for questions and answers
-  //   if answered wrong
-  //     remove 5 seconds
-  //     display message "Wrong. Try again"
-  //   if answered right
-  //     move to next question
-  //     display message "Great Job!"
-
-  // after final question is submited
-  //   record time
-  //   run submit score function
-  
-   questionOption = question[question.number];
+   let questionOption = getNextQuestion(currentQuestionInt);
+   console.log(questionOption)
    questionMessage.textContent = questionOption.question
-   document.getElementById().style.display = 'block';
-
-  //  for (var i = 0; <questionOption.length; i++){
-
-
-
-  //  }
-
-
+   $().style.display = 'block';
 }
+
+// add event listeners
+ startBtn.on("click", startQuiz);
+// homeBtn.addEventListener("click", home);
+// clearBtn.addEventListener("clikc", clear);
+// submitBtn.addEventListener("click", submit);
 
 // function sumbitScore
   //remove questions
@@ -143,9 +132,3 @@ function runQuiz() {
 // function home{
 //     location.reload;
 // }
-
-// add event listeners
-startBtn.addEventListener("click", startQuiz);
-// homeBtn.addEventListener("click", home);
-// clearBtn.addEventListener("clikc", clear);
-// submitBtn.addEventListener("click", submit);

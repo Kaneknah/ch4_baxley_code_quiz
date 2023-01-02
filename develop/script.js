@@ -22,16 +22,18 @@ let questionPrompt = $("#question-prompt");
 let highScoreEl = ("");
 let currentQuestionInt = 0;
 let secondsLeft = 30;
+let resultsText = $(".results-text");
+// let chosenQuestion = ""
 
 //create the questions needed for the quiz
 var questions = [ 
     {
-        question: "Bla Bla Bla111",
+        question: "Is Andrew a Dingus?",
         options: [
-        "A. bla",
-        "B. bla",
-        "C. Bla",],
-        answer: 0,
+        "A. Yes",
+        "B. Duh",
+        "C. Fuck yeah",],
+        answer: "Fuck yeah",
          } ,
 
       {
@@ -40,7 +42,7 @@ var questions = [
         "A. bla",
         "B. bla",
         "C. Bla",],
-        answer: 3,
+        answer: 2,
          } ,
     
      {
@@ -67,11 +69,11 @@ var questions = [
         "A. bla",
         "B. bla",
         "C. Bla",],
-        answer: 3,
+        answer: 2,
          } ,
     
 ];
-
+//Function for moving to the next question.
 function getNextQuestion(questionNum){
   currentQuestionInt++
   return (questions[questionNum]);
@@ -80,12 +82,11 @@ function getNextQuestion(questionNum){
 // Function for Starting the quiz: removes buttons and starts timer and activates runQuiz function. 
 function startQuiz(){
 
-  setInterval(function() {
+  var timeInterval = setInterval(function() {
     secondsLeft--;
-    timeRemainingEl.textContent = secondsLeft + " Seconds left till Game Over"
-    console.log("hello!@!@!");
+    timeRemainingEl.text(`Time Remaining: ${secondsLeft}`)
     if(secondsLeft === 0) {
-      clearInterval(timerInterval);
+      clearInterval(timeInterval);
     
     }
 
@@ -93,42 +94,61 @@ function startQuiz(){
 
   startBtn.remove()
   quizPrompt.remove()
-  runQuiz()
 
+  let currentQuestion = getNextQuestion(currentQuestionInt);
+  displayQuestion(currentQuestion)
 }
-
-
 
 // how to connect text in JS to specific questions and rotate them though as they are clicked.
-function runQuiz() {
+function displayQuestion(question) {
+  console.log(question);
+  questionPrompt.text(`Question: ${question.question}`);
+  console.log(question.options);
+  console.log(question.answer);
+  question.options.forEach(option => {
+  const answerBtn = $("<button></button>")
+  answerOptions.append(answerBtn.text(option));
+  answerBtn.on('click', answerResults)
   
-   let questionOption = getNextQuestion(currentQuestionInt);
-   console.log(questionOption)
-   questionMessage.textContent = questionOption.question
-   $().style.display = 'block';
+  })
+  
+//  answerBtn.on("click", answerResults());
+
+
 }
+
+//Function for when the user selects an answer
+function answerResults(event){
+  let selectedAnswer = $(event.target)
+  console.log(selectedAnswer)
+  if (selectedAnswer = questions.answer){
+    correctAnswer();
+    
+  }else {
+    wrongAnswer();
+     }
+  
+  getNextQuestion(question);
+    }
+//Function for if the wrong answer was clicked.
+    function wrongAnswer() {
+      console.log("Idiot");
+      secondsLeft - 5;
+      let responseText = "Sorry Wrong Answer"
+    resultsText.append(responseText);
+    }
+//function for if the right answer was clicked.
+    function correctAnswer(){
+      console.log("good job");
+      let responseText = "Congrats! you are right!"
+    resultsText.append(responseText);
+    }
+
+
+
 
 // add event listeners
  startBtn.on("click", startQuiz);
 // homeBtn.addEventListener("click", home);
 // clearBtn.addEventListener("clikc", clear);
 // submitBtn.addEventListener("click", submit);
-
-// function sumbitScore
-  //remove questions
-  //add score form
-    //input for initials
-  //event listeners?
-  //run display scorees function
-
-//function displayScore
-//remove form
-//create high scores ol
-//
-
-//clear button
-
-// //home button
-// function home{
-//     location.reload;
-// }

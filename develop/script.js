@@ -23,40 +23,70 @@ let highScoreEl = "";
 let currentQuestionInt = 0;
 let secondsLeft = 30;
 let resultsText = $(".results-text");
-let score = $("#score");
+let score = 0;
 
 //create the questions needed for the quiz
 var questions = [
 	{
-		question: "Is Andrew a Dingus?",
-		options: ["A. Yes", "B. Duh", "C. Fuck yeah"],
-		answer: "C. Fuck yeah",
+		question:
+			"What is the proper format for running node.js in the terminal for an index.js file?",
+		options: [
+			"A. Random typing till it works",
+			"B. Give up, Terminal is too hard",
+			"C. node index",
+		],
+		answer: "C. node index",
 	},
 
 	{
-		question: "Bla Bla Bla222",
-		options: ["A. bla", "B. bla", "C. Bla"],
-		answer: 2,
+		question: "Which of the following statements is true for CSS",
+		options: [
+			"A. It is an illegal torture used at GitMo",
+			"B. I would rather take a cheese grader to my inner thigh than use it",
+			"C. It stands for 'Complex Signaling System'",
+		],
+		answer:
+			"B. I would rather take a cheese grader to my inner thigh than use it",
 	},
 
 	{
-		question: "Bla Bla Bla333",
-		options: ["A. bla", "B. bla", "C. Bla"],
-		answer: 1,
+		question:
+			"What is a good replacement for an 'if/else' statement for Java Script?",
+		options: [
+			"A. Why/god statement ",
+			"B. Switch statement",
+			"C. He Said/She Said",
+		],
+		answer: "B. Switch statement",
 	},
 
 	{
-		question: "Bla Bla Bla444",
-		options: ["A. bla", "B. bla", "C. Bla"],
-		answer: 0,
+		question: "Does the TA Niles know everything about Writing code?",
+		options: [
+			"A. Yes, He is the Chosen One",
+			"B. No, Thats not possible",
+			"C. Who is Niles?",
+		],
+		answer: "A. Yes, He is the Chosen One",
 	},
 
 	{
-		question: "Bla Bla Bla555",
-		options: ["A. bla", "B. bla", "C. Bla"],
-		answer: 2,
+		question:
+			"If you run into a mental block during Bootcamp, what is the best course of action",
+		options: [
+			"A. Give up",
+			"B. Cry and then give up",
+			"C. Cry and then give up and then get back at it because you paid like $13k to take this course, and if you don't pass it would have been better to invest it in Crypto. and thats sad.",
+		],
+		answer:
+			"C. Cry and then give up and then get back at it because you paid like $13k to take this course, and if you don't pass it would have been better to invest it in Crypto. and thats sad.",
 	},
 ];
+
+function renderScore() {
+	score = $("#score");
+	score.valueOf = 0;
+}
 //Function for moving to the next question.
 function getNextQuestion(questionNum) {
 	currentQuestionInt++;
@@ -82,16 +112,15 @@ function startQuiz() {
 
 // how to connect text in JS to specific questions and rotate them though as they are clicked.
 function displayQuestion(question) {
+	removeButtons();
 	questionPrompt.text(`Question: ${question.question}`);
 	question.options.forEach((option) => {
-		const answerBtn = $("<button></button>").click(
-			{ question: question },
-			answerResults
-		);
+		const answerBtn = $("<button></button>")
+			// .att(".option-btns")
+			.click({ question: question }, answerResults);
+
 		answerOptions.append(answerBtn.text(option));
 	});
-
-	//  answerBtn.on("click", answerResults());
 }
 
 //Function for when the user selects an answer
@@ -118,10 +147,20 @@ function wrongAnswer() {
 function correctAnswer() {
 	console.log("good job");
 	let responseText = "Congrats! you are right!";
-	score += 5;
+	score.valueOf += 5;
+	console.log(score.valueOf);
 	resultsText.append(responseText);
 }
+function endQuiz() {
+	$(".question-prompt").empty();
+}
+function renderHighScore() {}
 
+function removeButtons() {
+	if ($(".answer-options")) {
+		$(".answer-options").empty();
+	}
+}
 function renderScore() {}
 
 // add event listeners

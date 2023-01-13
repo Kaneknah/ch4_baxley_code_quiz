@@ -21,8 +21,8 @@ let answerOptions = $(".answer-options");
 let questionPrompt = $("#question-prompt");
 let highScoreEl = "";
 let currentQuestionInt = 0;
-let secondsLeft = 30;
-let resultsText = $(".results-text");
+let secondsLeft = 50;
+let resultsText = $("#results-text");
 let score = 0;
 
 //create the questions needed for the quiz
@@ -83,10 +83,6 @@ var questions = [
 	},
 ];
 
-function renderScore() {
-	score = $("#score");
-	score.valueOf = 0;
-}
 //Function for moving to the next question.
 function getNextQuestion(questionNum) {
 	currentQuestionInt++;
@@ -139,6 +135,9 @@ function answerResults(event) {
 //Function for if the wrong answer was clicked.
 function wrongAnswer() {
 	console.log("Idiot");
+	if ($("#results-text")) {
+		$("#results-text").empty();
+	}
 	secondsLeft -= 5;
 	let responseText = "Sorry Wrong Answer";
 	resultsText.append(responseText);
@@ -146,22 +145,29 @@ function wrongAnswer() {
 //function for if the right answer was clicked.
 function correctAnswer() {
 	console.log("good job");
+	if ($("#results-text")) {
+		$("#results-text").empty();
+	}
 	let responseText = "Congrats! you are right!";
-	score.valueOf += 5;
-	console.log(score.valueOf);
+	score += 5;
+	console.log(score);
 	resultsText.append(responseText);
 }
 function endQuiz() {
 	$(".question-prompt").empty();
 }
-function renderHighScore() {}
+
+function renderScore() {
+	let currentScore = $("<p></p>").append("#score").text(score);
+
+	renderCurrentScore(currentScore);
+}
 
 function removeButtons() {
 	if ($(".answer-options")) {
 		$(".answer-options").empty();
 	}
 }
-function renderScore() {}
 
 // add event listeners
 startBtn.on("click", startQuiz);

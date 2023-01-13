@@ -16,7 +16,7 @@ const clearBtn = $("#clear-btn");
 let timeRemainingEl = $("#time-remaining");
 const quizPrompt = $("#quiz-prompt");
 const startBtn = $("#start-btn");
-let questionCard = ".question-card";
+let questionCard = $(".question-card");
 let answerOptions = $(".answer-options");
 let questionPrompt = $("#question-prompt");
 let highScoreEl = "";
@@ -72,7 +72,7 @@ var questions = [
 
 	{
 		question:
-			"If you run into a mental block during Bootcamp, what is the best course of action",
+			"If you run into a mental block during Boot-camp, what is the best course of action",
 		options: [
 			"A. Give up",
 			"B. Cry and then give up",
@@ -153,16 +153,49 @@ function correctAnswer() {
 	console.log(score);
 	resultsText.append(responseText);
 }
+
 function endQuiz() {
-	$(".question-prompt").empty();
+	$(".question-card").empty();
+	let finalScoreTitle = $("<div></div>")
+		.attr("id", "final-score-title")
+		.text(
+			" Your final score is " +
+				score +
+				"!. Please enter your initials and save it!"
+		)
+		.quizPrompt.append(finalScoreTitle);
+
+	let initialsForm = $("<form></form>").attr("id", "initial-form").on(click, function (event) {
+		event.preventDefault();
+		let formText = $('#initial-form').val();
+		if (!formText) {
+			let errorOnForm = $("<div></<div>")
+				.attr("id", "error-on-form")
+				.text("Please enter your Initials to save the High Score.");
+
+			resultsText.append(errorOnForm);
+		} else {
+			let initialsScore = formText + ": " + score;
+			localStorage.setItem(score, initialsScore);
+			RenderFinalScore()
+		}
+	}
+	
 }
 
-function renderScore() {
-	let currentScore = $("<p></p>").append("#score").text(score);
+function renderFinalScore() {
+	$(".question-card").empty();
+	let scoreList = $("<li></li>").attr("class", "score-list").text(initialsScore);
 
-	renderCurrentScore(currentScore);
-}
+	answerOptions.append(scoreList)
 
+	let finalScoreTitle = $("<div></div>")
+	.attr("id", "final-score-title")
+	.text(" High Score List ");
+
+	quizPrompt.append(finalScoreTitle);
+	};
+	
 function removeButtons() {
 	if ($(".answer-options")) {
 		$(".answer-options").empty();
@@ -174,3 +207,4 @@ startBtn.on("click", startQuiz);
 // homeBtn.addEventListener("click", home);
 // clearBtn.addEventListener("click", clear);
 // submitBtn.addEventListener("click", submit);
+

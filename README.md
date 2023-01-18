@@ -2,7 +2,7 @@
 
 ## Description
 
-This Challenge was the creation of a Code Quiz(https://kaneknah.github.io/ch6_baxley_weather_page/) that would utilize CSS, Java Script, HTML, JQuery, and Bootstrap to create a clean and fresh webpage that responds to user input while actively and passively performing the required functions.
+This Challenge was the creation of a Code Quiz (https://kaneknah.github.io/ch4_baxley_code_quiz/) that would utilize CSS, Java Script, HTML, JQuery, and Bootstrap to create a clean and fresh webpage that responds to user input while actively and passively performing the required functions.
 
 This challenge caused quite a bit of difficulty for me as it took a great deal of time to finish. However, this struggle greatly improved my skills in writing Java Script functions, Jquery usage and, as well as CSS aspects of the code. While this challenge can be off putting at the amount of time it required, the resulting webpage, I feel, exhibits a greater understanding of code than other projects before. Not only did I improve on my ability to write JavaScript functions, but I also took this challenge as an opportunity to expand my usage of Bootstrap CSS frameworks. While not an overt aspect of the challenge, the practice with Bootstrap built even more confidence in my abilities.
 

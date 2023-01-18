@@ -1,17 +1,3 @@
-// GIVEN I am taking a code quiz
-// WHEN I click the start button
-// THEN a timer starts and I am presented with a question
-// WHEN I answer a question
-// THEN I am presented with another question
-// WHEN I answer a question incorrectly
-// THEN time is subtracted from the clock
-// WHEN all questions are answered or the timer reaches 0
-// THEN the game is over
-// WHEN the game is over
-// THEN I can save my initials and score
-
-//name Variables:
-
 const clearBtn = $("#clear-btn");
 let timeRemainingEl = $("#time-remaining");
 const quizPrompt = $("#quiz-prompt");
@@ -99,10 +85,10 @@ function startQuiz() {
 			endQuiz();
 		}
 	}, 1000);
-
+	//Removes the initial display of the HTML
 	startBtn.remove();
 	quizPrompt.empty();
-
+	//runs through the questions, starting with the initial question.
 	let currentQuestion = getNextQuestion(currentQuestionInt);
 	displayQuestion(currentQuestion);
 }
@@ -236,34 +222,3 @@ function removeButtons() {
 
 // add event listeners
 startBtn.on("click", startQuiz);
-
-// homeBtn.addEventListener("click", home);
-// clearBtn.addEventListener("click", clear);
-// submitBtn.addEventListener("click", submit);
-
-// var student = document.getElementById("student-names");
-// var grade = document.getElementById("grades");
-// var comment = document.getElementById("msg");
-// var saveButton = document.getElementById("save");
-// var savedName = document.getElementById("saved-name");
-
-// saveButton.addEventListener("click", function (event) {
-// 	event.preventDefault();
-
-// 	var studentGrade = {
-// 		student: student.value,
-// 		grade: grade.value,
-// 		comment: comment.value.trim(),
-// 	};
-
-// 	localStorage.setItem("studentGrade", JSON.stringify(studentGrade));
-// 	renderMessage();
-// });
-
-// function renderMessage() {
-// 	var renderedScore = JSON.parse(localStorage.getItem("studentGrade"));
-// 	if (renderedScore !== null) {
-// 		document.querySelector(".scores").textContent =
-// 			lastGrade.student + " received a/an " + lastGrade.grade;
-// 	}
-// }

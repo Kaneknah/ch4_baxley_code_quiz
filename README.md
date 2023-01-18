@@ -2,37 +2,35 @@
 
 ## Description
 
-This Challenge was the creation of a Weather Dashboard(https://kaneknah.github.io/ch6_baxley_weather_page/) that would utilize API calls from "OpenWeather API" to check the current weather and the five day forecast for s searched city.
+This Challenge was the creation of a Code Quiz(https://kaneknah.github.io/ch6_baxley_weather_page/) that would utilize CSS, Java Script, HTML, JQuery, and Bootstrap to create a clean and fresh webpage that responds to user input while actively and passively performing the required functions.
 
-The project utilized such technologies as the before mentioned API, as well as JQuery, and Bulma CSS framework.
-
-This challenge pushed my abilities further than pervious challenges as I attempted to implement the recently learned Jquery syntax over vanilla Java Script. the changes in syntax, while difficult at first, was a great addition to my understanding and overall ended up making writing this project easier to understand and to code. Another challenge that this project presented with the calling of multiple API functions and rendering them on a single HTML page for viewing. The key to this process was attempting to keep the code as day as possible. I found that not repeating myself with the rendering of the API calls created multiple bugs when the functions ran. Debugging this process, while time consuming and challenging, was highly beneficial to my understanding of the code and the processes involved in creating this challenge project.
+This challenge caused quite a bit of difficulty for me as it took a great deal of time to finish. However, this struggle greatly improved my skills in writing Java Script functions, Jquery usage and, as well as CSS aspects of the code. While this challenge can be off putting at the amount of time it required, the resulting webpage, I feel, exhibits a greater understanding of code than other projects before. Not only did I improve on my ability to write JavaScript functions, but I also took this challenge as an opportunity to expand my usage of Bootstrap CSS frameworks. While not an overt aspect of the challenge, the practice with Bootstrap built even more confidence in my abilities.
 
 This challenge, while demanding, provided me with a great deal of practice and greatly helped build my confidence in my abilities. I feel my understanding of syntax and function processes has increased the most during this challenge and I am proud to see a final product that functions and operates correctly.
 
-This functionality of the challenge is as follows. Firstly, on initialization, a history of the search will be saved to local storage and a button with the name of the searched city will appear. Secondly, a Fetch API function will be called that utilizes two API calls, the single day weather API and the 5-day-forecast API. The results of this will be rendered on the page in a visually appealing format. The data retrieved from the API calls will display the name of the city, date, temperature, wind-speed, and humidity for the current day, as well as the the following forecasted days. The functions also display an icon showing an image representation of the weather(see image below)
-???????????????????????????????????
+The functionality of this challenges is as follows. On the initialization of the quiz. A set of functions to run a countdown begins. A separate set of functions will also run that will cycle though an array of questions and render them to the HTMl, creating the answers options as selectable buttons for the user.
+When the user selects an answer, they will be presented with the next question. Behind the scenes, a score will be added if the questions is correct. if it is incorrect, time will be deducted from the timer. The user will also be given a notification on if they were correct or not.
+Finally, When the user selects the answer to the final question. The endgame function will present him with the option to save his score. It will do this while ending the timer, removing created HTML elements, and accessing the localStorage for saving data.
 
 ## User Story
 
-AS A traveler
-I WANT to see the weather outlook for multiple cities
-SO THAT I can plan a trip accordingly
+AS A coding boot camp student
+I WANT to take a timed quiz on JavaScript fundamentals that stores high scores
+SO THAT I can gauge my progress compared to my peers
 
 ## Acceptance Criteria
 
-GIVEN a weather dashboard with form inputs
-WHEN I search for a city
-THEN I am presented with current and future conditions for that city and that city is added to the search history
-WHEN I view current weather conditions for that city
-THEN I am presented with the city name, the date, an icon representation of weather conditions,
-the temperature, the humidity, and the the wind speed
-WHEN I view future weather conditions for that city
-THEN I am presented with a 5-day forecast that displays the date,
-an icon representation of weather conditions, the temperature,
-the wind speed, and the humidity
-WHEN I click on a city in the search history
-THEN I am again presented with current and future conditions for that city
+GIVEN I am taking a code quiz
+WHEN I click the start button
+THEN a timer starts and I am presented with a question
+WHEN I answer a question
+THEN I am presented with another question
+WHEN I answer a question incorrectly
+THEN time is subtracted from the clock
+WHEN all questions are answered or the timer reaches 0
+THEN the game is over
+WHEN the game is over
+THEN I can save my initials and score
 
 ## Installation
 
@@ -40,14 +38,14 @@ No Installation Steps
 
 ## Usage
 
-This project can be initiated by entering in a city name into the search field and selecting the search button.This will initialize the API calls and the Local Storage functions. The weather will then be displayed on the screen for the user to review. The user can search a new city in the input field, or select a previously searched city by selecting one of the saved buttons from the local storage call.
-![Alt text](assets/images/Coctail%20Recipe%20Generator%20image%200.jpg)
-![Alt text](assets/images/Coctail%20Recipe%20Generator%20image%201.jpg)
+This project can be initiated by the "start" button. The webpage will then cycle though a list of questions for the user to answer by selecting the correct answer button. A timer will countdown s the user progresses and time will be deducted for wrong answers. When the user completes the final question OR the timer runs out. The user will be showed their score and will be given the opportunity to save their initials. The user will have to opportunity to restart the quiz at anytime though the present "home" button in the top left corner.  
+![Alt text](assets/images/screenshot01.png)
+![Alt text](assets/images/screenshot02.png)
+![Alt text](assets/images/screenshot03.png)
 
 ## Credits
 
-CSS framework provided by Bluma.io.
-API provided by OpenWeather API https://openweathermap.org/forecast5.
+CSS framework provided by Bootstrap
 Javascript Library features provided by JQuery https://jqueryui.com/.
 
 ## License

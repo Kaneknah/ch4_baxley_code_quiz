@@ -11,14 +11,14 @@
 // THEN I can save my initials and score
 
 //name Variables:
-const homeBtn = $("#home-btn");
+
 const clearBtn = $("#clear-btn");
 let timeRemainingEl = $("#time-remaining");
 const quizPrompt = $("#quiz-prompt");
 const startBtn = $("#start-btn");
 let questionCard = $(".question-card");
 let answerOptions = $(".answer-options");
-let questionPrompt = $("#question-prompt");
+let questionPrompt = $(".question-prompt");
 let highScoreEl = "";
 let currentQuestionInt = 0;
 let secondsLeft = 50;
@@ -33,13 +33,13 @@ var questions = [
 		options: [
 			"A. Random typing till it works",
 			"B. Give up, Terminal is too hard",
-			"C. node index",
+			"C. Node index",
 		],
-		answer: "C. node index",
+		answer: "C. Node index",
 	},
 
 	{
-		question: "Which of the following statements is true for CSS",
+		question: "Which of the following statements is true for CSS?",
 		options: [
 			"A. It is an illegal torture used at GitMo",
 			"B. I would rather take a cheese grader to my inner thigh than use it",
@@ -61,7 +61,7 @@ var questions = [
 	},
 
 	{
-		question: "Does the TA Niles know everything about Writing code?",
+		question: "Does the TA Niles know everything about writing code?",
 		options: [
 			"A. Yes, He is the Chosen One",
 			"B. No, Thats not possible",
@@ -76,10 +76,10 @@ var questions = [
 		options: [
 			"A. Give up",
 			"B. Cry and then give up",
-			"C. Cry and then give up and then get back at it because you paid like $13k to take this course, and if you don't pass it would have been better to invest it in Crypto. and thats sad.",
+			"C. Cry and then give up and then get back at it because you paid like $13k to take this course, and if you don't pass it would have been better to invest it in Crypto, and thats sad.",
 		],
 		answer:
-			"C. Cry and then give up and then get back at it because you paid like $13k to take this course, and if you don't pass it would have been better to invest it in Crypto. and thats sad.",
+			"C. Cry and then give up and then get back at it because you paid like $13k to take this course, and if you don't pass it would have been better to invest it in Crypto, and thats sad.",
 	},
 ];
 
@@ -94,13 +94,14 @@ function startQuiz() {
 	var timeInterval = setInterval(function () {
 		secondsLeft--;
 		timeRemainingEl.text(`Time Remaining: ${secondsLeft}`);
-		if (secondsLeft === 0) {
+		if (secondsLeft === 0 && !endQuiz) {
 			clearInterval(timeInterval);
+			endQuiz();
 		}
 	}, 1000);
 
 	startBtn.remove();
-	quizPrompt.remove();
+	quizPrompt.empty();
 
 	let currentQuestion = getNextQuestion(currentQuestionInt);
 	displayQuestion(currentQuestion);
@@ -112,7 +113,8 @@ function displayQuestion(question) {
 	questionPrompt.text(`Question: ${question.question}`);
 	question.options.forEach((option) => {
 		const answerBtn = $("<button></button>")
-			// .att(".option-btns")
+			.attr("class", "answer-btns m-2")
+			.addClass("btn btn-primary")
 			.click({ question: question }, answerResults);
 
 		answerOptions.append(answerBtn.text(option));
@@ -129,7 +131,11 @@ function answerResults(event) {
 	}
 	let currentQuestion = getNextQuestion(currentQuestionInt);
 	// getNextQuestion(questions);
-	displayQuestion(currentQuestion);
+	if (currentQuestion) {
+		displayQuestion(currentQuestion);
+	} else {
+		endQuiz();
+	}
 	//add delete current button function and add a call here.
 }
 //Function for if the wrong answer was clicked.
@@ -139,7 +145,7 @@ function wrongAnswer() {
 		$("#results-text").empty();
 	}
 	secondsLeft -= 5;
-	let responseText = "Sorry Wrong Answer";
+	let responseText = "Sorry Wrong Answer (-5 seconds) ";
 	resultsText.append(responseText);
 }
 //function for if the right answer was clicked.
@@ -148,54 +154,80 @@ function correctAnswer() {
 	if ($("#results-text")) {
 		$("#results-text").empty();
 	}
-	let responseText = "Congrats! you are right!";
+	let responseText = "Congrats! you are right! (+5 Points) ";
 	score += 5;
 	console.log(score);
 	resultsText.append(responseText);
 }
-
+// Function for using the end processes for the quiz
 function endQuiz() {
+	//resting the HTML
+	timeRemainingEl.remove();
+	//Stopping the timer.
 	$(".question-card").empty();
-	let finalScoreTitle = $("<div></div>")
-		.attr("id", "final-score-title")
+	if ($("#results-text")) {
+		$("#results-text").empty();
+	}
+	//Displaying the prompt for entering in final scores.
+	let finalScorePrompt = $("<div></div>")
+		.attr("id", "final-score-prompt")
 		.text(
 			" Your final score is " +
 				score +
-				"!. Please enter your initials and save it!"
-		)
-		.quizPrompt.append(finalScoreTitle);
+				"! Please enter your initials and save it!    "
+		);
+	//Creating the input and button infomraiton for saving scores.
+	let initialsInput = $("<input></input>")
+		.attr("id", "initial-input")
+		.addClass("form-control w-25");
+	let initialsBtn = $("<button></button>")
+		.attr("id", "initial-button")
+		.text("Submit")
+		.addClass("btn btn-primary m-2 form-control-sm w-25")
+		.on("click", function (event) {
+			event.preventDefault();
+			//Code for the event of saving scores.
+			let formText = $("#initial-input").val();
+			if (!formText) {
+				//if no info was added into the input
+				let errorOnForm = $("<div></<div>")
+					.attr("id", "error-on-form")
+					.text("Please enter your Initials to save the High Score.   ");
 
-	let initialsForm = $("<form></form>").attr("id", "initial-form").on(click, function (event) {
-		event.preventDefault();
-		let formText = $('#initial-form').val();
-		if (!formText) {
-			let errorOnForm = $("<div></<div>")
-				.attr("id", "error-on-form")
-				.text("Please enter your Initials to save the High Score.");
-
-			resultsText.append(errorOnForm);
-		} else {
-			let initialsScore = formText + ": " + score;
-			localStorage.setItem(score, initialsScore);
-			RenderFinalScore()
-		}
-	}
-	
+				resultsText.append(errorOnForm);
+			} else {
+				//store data to localStorage and run the render Score.
+				localStorage.setItem(formText, JSON.stringify(score));
+				renderFinalScore(formText, score);
+			}
+		});
+	//appending the information for this function.
+	quizPrompt.append(finalScorePrompt);
+	finalScorePrompt.append(initialsBtn);
+	finalScorePrompt.append(initialsInput);
 }
-
-function renderFinalScore() {
-	$(".question-card").empty();
-	let scoreList = $("<li></li>").attr("class", "score-list").text(initialsScore);
-
-	answerOptions.append(scoreList)
-
+//Function for rendering the final score page
+function renderFinalScore(score, formText) {
+	$(quizPrompt).empty();
+	//Creating a title
 	let finalScoreTitle = $("<div></div>")
-	.attr("id", "final-score-title")
-	.text(" High Score List ");
-
-	quizPrompt.append(finalScoreTitle);
-	};
-	
+		.attr("id", "final-score-title")
+		.text(" High Score List: ");
+	//Retrieving information from the localStorage to display the high scores.
+	Object.keys(localStorage).forEach((key) => {
+		let localScores = JSON.parse(localStorage.getItem(key));
+		if (localScores !== null) {
+			document.querySelector(".scores").textContent =
+				"Score : " +
+				formText +
+				" ------------------------------------------------------------ " +
+				score;
+		}
+		//appending the information for this function.
+		quizPrompt.append(finalScoreTitle);
+	});
+}
+//Helper Function rto remove buttons when moving to next question.
 function removeButtons() {
 	if ($(".answer-options")) {
 		$(".answer-options").empty();
@@ -204,7 +236,34 @@ function removeButtons() {
 
 // add event listeners
 startBtn.on("click", startQuiz);
+
 // homeBtn.addEventListener("click", home);
 // clearBtn.addEventListener("click", clear);
 // submitBtn.addEventListener("click", submit);
 
+// var student = document.getElementById("student-names");
+// var grade = document.getElementById("grades");
+// var comment = document.getElementById("msg");
+// var saveButton = document.getElementById("save");
+// var savedName = document.getElementById("saved-name");
+
+// saveButton.addEventListener("click", function (event) {
+// 	event.preventDefault();
+
+// 	var studentGrade = {
+// 		student: student.value,
+// 		grade: grade.value,
+// 		comment: comment.value.trim(),
+// 	};
+
+// 	localStorage.setItem("studentGrade", JSON.stringify(studentGrade));
+// 	renderMessage();
+// });
+
+// function renderMessage() {
+// 	var renderedScore = JSON.parse(localStorage.getItem("studentGrade"));
+// 	if (renderedScore !== null) {
+// 		document.querySelector(".scores").textContent =
+// 			lastGrade.student + " received a/an " + lastGrade.grade;
+// 	}
+// }

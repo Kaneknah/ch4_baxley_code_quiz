@@ -10,6 +10,7 @@ let currentQuestionInt = 0;
 let secondsLeft = 50;
 let resultsText = $("#results-text");
 let score = 0;
+let timeInterval = 0;
 
 //create the questions needed for the quiz
 var questions = [
@@ -77,10 +78,10 @@ function getNextQuestion(questionNum) {
 
 // Function for Starting the quiz: removes buttons and starts timer and activates runQuiz function.
 function startQuiz() {
-	var timeInterval = setInterval(function () {
+	timeInterval = setInterval(function () {
 		secondsLeft--;
 		timeRemainingEl.text(`Time Remaining: ${secondsLeft}`);
-		if (secondsLeft === 0 && !endQuiz) {
+		if (secondsLeft === 0) {
 			clearInterval(timeInterval);
 			endQuiz();
 		}
@@ -121,6 +122,7 @@ function answerResults(event) {
 		displayQuestion(currentQuestion);
 	} else {
 		endQuiz();
+		clearInterval(timeInterval);
 	}
 	//add delete current button function and add a call here.
 }
@@ -201,13 +203,15 @@ function renderFinalScore(score, formText) {
 		.text(" High Score List: ");
 	//Retrieving information from the localStorage to display the high scores.
 	Object.keys(localStorage).forEach((key) => {
-		let localScores = JSON.parse(localStorage.getItem(key));
-		if (localScores !== null) {
-			document.querySelector(".scores").textContent =
+		let localScore = JSON.parse(localStorage.getItem(key));
+		if (localScore !== null) {
+			let appendedScore = $("<div></div>").text(
 				"Score : " +
-				formText +
-				" ------------------------------------------------------------ " +
-				score;
+					key +
+					" ------------------------------------------------------------ " +
+					localScore
+			);
+			$(".scores").append(appendedScore);
 		}
 		//appending the information for this function.
 		quizPrompt.append(finalScoreTitle);
